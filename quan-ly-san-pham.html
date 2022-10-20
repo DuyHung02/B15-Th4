@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+</head>
+<body>
+<input type="text" id="inputSP" placeholder="thêm sản phẩm">
+<button onclick="addsp()">Add</button>
+<h2>Danh sách sản phẩm</h2>
+<table id="showlist"></table>
+<script>
+    let list = ['bút bi', 'bút chì', 'thước kẻ', 'tẩy']
+    let show = document.getElementById('showlist')
+
+    function showlist() {
+        let listSP = ""
+        for (let i in list) {
+            listSP += "<tr>"
+            listSP += "<td><h3>" + list[i] + "</h3></td>"
+            listSP += "<td><button onclick='edit(" + i + ")'>Edit</button></td>"
+            listSP += "<td><button onclick='xoa("+ i + ")'>Delete</button></td>"
+            listSP += "</tr>"
+        }
+        show.innerHTML = listSP;
+    } showlist()
+
+    function addsp() {
+        let sanpham = document.getElementById('inputSP').value;
+        list.push(sanpham);
+        showlist();
+    }
+    function xoa(index) {
+        list.splice(index, 1);
+        showlist();
+    }
+    function edit(index) {
+        let sanpham = prompt("Nhập sản phẩm muốn sửa")
+        list.splice(index, 1, sanpham);
+        showlist();
+    }
+</script>
+</body>
+</html>
